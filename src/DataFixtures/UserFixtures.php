@@ -25,6 +25,7 @@ class UserFixtures extends Fixture
                 ->setEmail('user_'.$i.'@gmail.com');
                     
             $manager->persist($user);
+            $this->addReference('user_'.$i, $user);
         }
 
         $manager->flush();
