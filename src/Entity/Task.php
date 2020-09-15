@@ -179,6 +179,10 @@ class Task
     {
         $this->user = $user;
 
+        if ($user == null) {
+            $this->user = 'Anonyme';
+        }
+
         return $this;
     }
 }

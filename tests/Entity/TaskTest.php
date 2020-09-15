@@ -23,7 +23,7 @@ class TaskTest extends KernelTestCase
         return (new Task)
             ->setTitle('Tâche')
             ->setContent('Le contenue de la tâche')
-            //->setUser($this->getUser())
+            ->setUser($this->getUser())
         ;
     }
 
