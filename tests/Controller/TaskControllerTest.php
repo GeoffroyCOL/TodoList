@@ -5,13 +5,13 @@ namespace Tests\Controller;
 use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\HttpKernel\Client;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class TaskControllerTest extends WebTestCase
 {    
-    
     /**
      * getUserConnect - Simule la connection d'un tutilisateur
      *
@@ -46,6 +46,7 @@ class TaskControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $this->getUserConnect($client);
+
         $client->request('GET', '/tasks');
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
@@ -102,12 +103,12 @@ class TaskControllerTest extends WebTestCase
         $client = static::createClient();
         $this->getUserConnect($client);
 
-        $client->request('GET', '/tasks/1/edit');
+        $client->request('GET', '/tasks/2/edit');
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
     
     /**
-     * testReturnStatusForEditTaskWithBadId - Test si la page  retourne une erreur selon l'id de la tâche
+     * testReturnStatusForEditTaskWithBadId - Test si la page retourne une erreur selon l'id de la tâche
      */
     public function testReturnStatusForEditTaskWithBadId()
     {
@@ -117,33 +118,97 @@ class TaskControllerTest extends WebTestCase
         $client->request('GET', '/tasks/100/edit');
         $this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
     }
-
-    public function testAccessTaskMakeUser()
+    
+    /**
+     * testEditTaskMadeByUser - Si l'utilisateur est l'auteur de la tâche
+     */
+    public function testEditTaskMadeByUser()
     {
         $client = static::createClient();
         $this->getUserConnect($client);
 
-        $client->request('GET', '/tasks/2/edit');
-        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $crawler = $client->request('GET', '/tasks/6/edit');
+        $data = [
+            "task[title]"   => "Tâche 6 modifiée",
+            "task[content]" => "Le contenue de la tâche 6 modifié",
+        ];
 
+        $form = $crawler->selectButton('Modifier')->form($data);
+        $client->submit($form);
+        $this->assertResponseRedirects('/tasks');
+        $client->followRedirect();
     }
 
+    /**
+     * testEditTaskMadeByUser - Si l'utilisateur n'est pas l'auteur de la tâche
+     */
+    public function testEditTaskNotMageByUser()
+    {
+        $client = static::createClient();
+        $this->getUserConnect($client);
+        $client->request('GET', '/tasks/2/edit');
+        $this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+    }
 
     /**
      * ------------------------
      * Route /tasks/{id}/delete
      * ------------------------
      */
-
+    
     /**
-     * testReturnStatusForDeleteTaskWithGoodId 
+     * testReturnStatusForDeleteTaskWitGoodIdNotAuthorize - Test si l'utilisateur peut supprimer une tâche qui ne lui appartient pas
+     *
+     * @return void
      */
-    public function testReturnStatusForDeleteTaskWithGoodId()
+    public function testReturnStatusForDeleteTaskWitGoodIdNotAuthorize()
     {
         $client = static::createClient();
         $this->getUserConnect($client);
 
-        $crawler = $client->request('GET', '/tasks/1/delete');
+        $client->request('GET', '/tasks/2/delete');
+        $this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+    }
+
+    /**
+     * testReturnStatusForDeleteTaskWitGoodIdAuthorize - Test si l'utilisateur peut supprimer une tâche qui lui appartient
+     *
+     * @return void
+     */
+    public function testReturnStatusForDeleteTaskWitGoodIdAuthorize()
+    {
+        $client = static::createClient();
+        $this->getUserConnect($client);
+
+        $client->request('GET', '/tasks/6/delete');
+        $this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+    }
+
+
+    /**
+     * testReturnStatusForDeleteTaskWithBadId - Test si la page retourne une erreur selon l'id de la tâche
+     */
+    public function testReturnStatusForDeleteTaskWithBadId()
+    {
+        $client = static::createClient();
+        $this->getUserConnect($client);
+
+        $client->request('GET', '/tasks/100/delete');
+        $this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
+    }
+
+    /**
+     * ------------------
+     * /tasks/{id}/toggle
+     * ------------------
+     */
+
+    public function testEditTaskToggle()
+    {
+        $client = static::createClient();
+        $this->getUserConnect($client);
+
+        $client->request('GET', '/tasks/2/toggle');
         $this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
     }
 }

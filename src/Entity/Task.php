@@ -155,9 +155,11 @@ class Task
      * @param  bool $flag
      * @return bool
      */
-    public function toggle(bool $flag): bool
+    public function toggle(bool $flag): self
     {
         $this->isDone = $flag;
+
+        return $this;
     }
     
     /**

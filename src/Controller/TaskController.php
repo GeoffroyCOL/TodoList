@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class TaskController extends AbstractController
 {
     private $taskHandler;
@@ -69,6 +70,8 @@ class TaskController extends AbstractController
      */    
     public function editAction(Task $task, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('TASK_EDIT', $task, 'Vous ne pouvez pas modifier cette tâche');
+
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
@@ -95,7 +98,8 @@ class TaskController extends AbstractController
     public function toggleTaskAction(Task $task): Response
     {
         $task->toggle(!$task->isDone());
-        $this->taskHandler->edit($form->getData());
+
+        $this->taskHandler->edit($task);
         $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
 
         return $this->redirectToRoute('task_list');
@@ -111,6 +115,8 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task): Response
     {
+        $this->denyAccessUnlessGranted('TASK_DELETE', $task, 'Vous ne pouvez pas supprimer cette tâche');
+
         $this->taskHandler->delete($task);
         $this->addFlash('success', 'La tâche a bien été supprimée.');
 
