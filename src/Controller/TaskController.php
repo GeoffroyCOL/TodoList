@@ -53,7 +53,9 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('task_list');
         }
 
-        return $this->render('task/create.html.twig', ['form' => $form->createView()]);
+        return $this->render('task/create.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**
@@ -70,7 +72,7 @@ class TaskController extends AbstractController
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->taskHandler->edit($form->getData());
             $this->addFlash('success', 'La tâche a bien été modifiée.');
             return $this->redirectToRoute('task_list');

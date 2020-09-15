@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -178,10 +179,6 @@ class Task
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
-        if ($user == null) {
-            $this->user = 'Anonyme';
-        }
 
         return $this;
     }
