@@ -16,7 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class UserType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options = null)
+    public function buildForm(FormBuilderInterface $builder, array $options = [])
     {
         $builder
             ->add('username', TextType::class, ['label' => "Nom d'utilisateur"])
