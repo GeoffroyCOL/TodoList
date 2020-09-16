@@ -22,7 +22,11 @@ class TaskVoter extends Voter
             return false;
         }
 
-        if ($subject->getUser() == $user && in_array($attribute, ['TASK_EDIT', 'TASK_VIEW'])) {
+        if ($subject->getUser() == $user && in_array($attribute, ['TASK_EDIT', 'TASK_DELETE'])) {
+            return true;
+        }
+
+        if ($subject->getUser()->getUsername() == 'Anonyme' && in_array('ROLE_ADMIN', $user->getRoles())) {
             return true;
         }
 

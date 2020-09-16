@@ -5,48 +5,22 @@ namespace App\Test\Controller;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Test\TraitUserConnectTest;
+use Tests\Controller\ControllerTest;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-class UserControllerTest extends WebTestCase
+class UserControllerTest extends ControllerTest
 {
-    /**
-     * getUserConnect - Simule la connection d'un tutilisateur
-     *
-     * @param  mixed $client
-     */
-    private function getUserConnect($client, $user)
-    {
-        //Récupère un utilisateur
-        //$user = self::$container->get(UserRepository::class)->findBy(['username' => 'user_1']);
 
-        //On créer d'une session pour contenir l'utilisateur
-        $session = $client->getContainer()->get('session');
-        $token = new UsernamePasswordToken($user[0], null, 'main', $user[0]->getRoles());
-        $session->set('_security_main', serialize($token));
-        $session->save();
-
-        //On crée un cookie pour associe l'utilisateur à la session
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $client->getCookieJar()->set($cookie);
-    }
-
-    /**
-     * ------------
-     * Route /users
-     * ------------
-     */
-    
     /**
      * testReturnListUsersNotAuthorize - Test le refus d'accéder à la page qui liste les utilisateurs
      */
     public function testReturnListUsersNotAuthorize()
     {
         $client = static::createClient();
-        $user = self::$container->get(UserRepository::class)->findBy(['username' => 'user_2']);
-        $this->getUserConnect($client, $user);
+        $this->getUserConnect($client, 'user_3');
 
         $client->request('GET', '/users');
         $this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
@@ -58,18 +32,11 @@ class UserControllerTest extends WebTestCase
     public function testReturnListUsersAuthorize()
     {
         $client = static::createClient();
-        $user = self::$container->get(UserRepository::class)->findBy(['username' => 'user_1']);
-        $this->getUserConnect($client, $user);
+        $this->getUserConnect($client, 'user_1');
 
         $client->request('GET', '/users');
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
-
-    /**
-     * -------------------
-     * Route /users/create
-     * -------------------
-     */
     
     /**
      * testCreateUserWithRoleAdmin - Test si un utilisateur avec un ROLE_ADMIN peut ajouter un urilisateur
@@ -77,23 +44,18 @@ class UserControllerTest extends WebTestCase
     public function testCreateUserWithRoleAdmin()
     {
         $client = static::createClient();
-        $user = self::$container->get(UserRepository::class)->findBy(['username' => 'user_1']);
-        $this->getUserConnect($client, $user);
-
-        $crawler = $client->request('GET', '/users/create');
+        $this->getUserConnect($client, 'user_1');
+        $lastUser = self::$container->get(UserRepository::class)->findOneBy([], ['id' => 'desc'], 1, 0);
 
         $data = [
-            "user[username]"            => "user_8",
-            "user[email]"               => "user_8@gmail.com",
+            "user[username]"            => "user_".($lastUser->getId()+1),
+            "user[email]"               => "user_".($lastUser->getId()+1)."@gmail.com",
             "user[password][first]"     => "Hum123",
             "user[password][second]"    => "Hum123",
             "user[roles]"               => "ROLE_USER"
         ];
 
-        $form = $crawler->selectButton('Ajouter')->form($data);
-        $client->submit($form);
-        $this->assertResponseRedirects('/users');
-        $client->followRedirect();
+        $this->formForGestion($client, '/users/create', 'Ajouter', $data, '/users');
     } 
 
     /**
@@ -102,38 +64,25 @@ class UserControllerTest extends WebTestCase
     public function testCreateUserWithOutRoleAdmin()
     {
         $client = static::createClient();
-        $user = self::$container->get(UserRepository::class)->findBy(['username' => 'user_2']);
-        $this->getUserConnect($client, $user);
+        $this->getUserConnect($client, 'user_3');
 
         $crawler = $client->request('GET', '/users/create');
-
         $this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
     }
 
-    /**
-     * ----------------------
-     * Route /users/{id}/edit
-     * ----------------------
-     */
-    
     /**
      * testEditUserWithRoleAdmin - Test si un utilisateur avec un rôle adlin peut modifier un utilisateur
      */
     public function testEditUserWithRoleAdmin()
     {
         $client = static::createClient();
-        $user = self::$container->get(UserRepository::class)->findBy(['username' => 'user_1']);
-        $this->getUserConnect($client, $user);
-
-        $crawler = $client->request('GET', '/users/17/edit');
-
+        $this->getUserConnect($client, 'user_1');
         $data = [
-            "user_edit[username]"  => "user_222 modifié"
+            "user_edit[username]"               => "user_222 modifié",
+            "user_edit[newPassword][first]"     => "Hum123",
+            "user_edit[newPassword][second]"    => "Hum123",
         ];
 
-        $form = $crawler->selectButton('Modifier')->form($data);
-        $client->submit($form);
-        $this->assertResponseRedirects('/users');
-        $client->followRedirect();
-    } 
+        $this->formForGestion($client, '/users/17/edit', 'Modifier', $data, '/users');
+    }
 }

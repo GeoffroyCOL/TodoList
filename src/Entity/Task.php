@@ -50,7 +50,7 @@ class Task
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
@@ -169,6 +169,10 @@ class Task
      */
     public function getUser(): ?User
     {
+        if (!$this->user) {
+            return (new User)->setUsername('Anonyme');
+        }
+
         return $this->user;
     }
     
