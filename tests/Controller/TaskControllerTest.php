@@ -34,9 +34,9 @@ class TaskControllerTest extends WebTestCase
     }
 
     /**
-     * -----------
-     * Route /task
-     * -----------
+     * ------------
+     * Route /tasks
+     * ------------
      */
 
     /**
@@ -56,18 +56,6 @@ class TaskControllerTest extends WebTestCase
      * Route /task/create
      * ------------------
      */
-
-    /**
-     * testReturnStatusOKForCreateTask -  Test si la page ne retourne pas d'erreur
-     */
-    public function testReturnStatusOKForCreateTask()
-    {
-        $client = static::createClient();
-        $this->getUserConnect($client);
-
-        $client->request('GET', '/tasks/create');
-        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-    }
     
     /**
      * testCreateTask - Test l'ajout d'une nouvelle tâche
@@ -79,7 +67,7 @@ class TaskControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/tasks/create');
         $data = [
-            "task[title]"   => "Tâche 12",
+            "task[title]"   => "Tâche 13",
             "task[content]" => "Le contenue de la tâche 12",
         ];
 
@@ -103,7 +91,7 @@ class TaskControllerTest extends WebTestCase
         $client = static::createClient();
         $this->getUserConnect($client);
 
-        $client->request('GET', '/tasks/2/edit');
+        $client->request('GET', '/tasks/6/edit');
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
     

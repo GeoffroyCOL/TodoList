@@ -3,13 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserType;
+use App\Form\UserEditType;
 use App\Service\UserHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
 class UserController extends AbstractController
 {
     private $userHandler;
@@ -47,7 +51,6 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userHandler->add($form->getDAta());
             $this->addFlash('success', "L'utilisateur a bien été ajouté.");
@@ -70,8 +73,7 @@ class UserController extends AbstractController
      */
     public function editAction(User $user, Request $request): Response
     {
-        $form = $this->createForm(UserType::class, $user);
-
+        $form = $this->createForm(UserEditType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -35,7 +35,10 @@ class UserHandler
      */
     public function add(User $user): void
     {
-        $this->password($user);
+        $user->setPassword(
+            $this->encoder->encodePassword($user, $user->getPassword())
+        );
+
         $this->manager->persist($user);
         $this->manager->flush();
     }
@@ -48,21 +51,10 @@ class UserHandler
      */
     public function edit(User $user): void
     {
-        $this->password($user);
+        if ($user->getNewPassword()) {
+            $user->setPassword($this->encoder->encodePassword($user, $user->getNewPassword()));
+        }
         $this->manager->flush();
-    }
-
-    /**
-     * password - Permet encoder le mot de passe
-     *
-     * @param  User $user
-     */
-    private function password(User $user)
-    {
-        $user->setPassword(
-            $this->encoder->encodePassword($user, $user->getPassword())
-        );
-        $user->eraseCredentials();
     }
 
     /**

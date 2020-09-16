@@ -16,6 +16,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class User implements UserInterface
 {
+    const ROLES = [ 
+        'Utilisateur' => 'ROLE_USER', 
+        'Administrateur' => 'ROLE_ADMIN'
+    ];
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -49,6 +54,8 @@ class User implements UserInterface
      * )
      */
     private $password;
+
+    private $newPassword;
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
@@ -196,5 +203,25 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
+    }
+
+    /**
+     * Get the value of newPassword
+     */ 
+    public function getNewPassword()
+    {
+        return $this->newPassword;
+    }
+
+    /**
+     * Set the value of newPassword
+     *
+     * @return  self
+     */ 
+    public function setNewPassword($newPassword)
+    {
+        $this->newPassword = $newPassword;
+
+        return $this;
     }
 }
