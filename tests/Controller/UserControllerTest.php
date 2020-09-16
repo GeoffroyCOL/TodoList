@@ -66,7 +66,7 @@ class UserControllerTest extends ControllerTest
         $client = static::createClient();
         $this->getUserConnect($client, 'user_3');
 
-        $crawler = $client->request('GET', '/users/create');
+        $client->request('GET', '/users/create');
         $this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
     }
 

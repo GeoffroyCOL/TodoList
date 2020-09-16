@@ -13,7 +13,7 @@ class SecurityControllerTest extends WebTestCase
     public function testReturnNotErrorPageLogin()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/login');
+        $client->request('GET', '/login');
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
     }

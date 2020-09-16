@@ -46,7 +46,7 @@ class TaskHandler
      * @param  Task $task
      * @return void
      */
-    public function edit(Task $task): void
+    public function edit(Task $task = null): void
     {
         $this->manager->flush();
     }
