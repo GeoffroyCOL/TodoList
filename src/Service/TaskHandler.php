@@ -70,12 +70,13 @@ class TaskHandler
      */
 
     /**
-     * getAll - Récupère la liste de toutes les tâches
+     * getAll - Récupère la liste de toutes les tâches / finit ou à faire
      *
+     * @param array $data
      * @return Task[]
      */
-    public function getAll(): array
+    public function getAll(array $data): array
     {
-        return $this->repository->findAll();
+        return $this->repository->findBy($data);
     }
 }

@@ -23,4 +23,56 @@ class DefaultControllerTest extends ControllerTest
         $client->request('GET', '/tasks');
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
+    
+    /**
+     * testClickCreateNewTask - Test si le lien vers la page de création d'une tâche fonctionne
+     */
+    public function testClickCreateNewTask()
+    {
+        $client = static::createClient();
+        $this->getUserConnect($client, 'user_1');
+
+        $crawler = $client->request('GET', '/');
+        $link = $crawler->selectLink('Créer une nouvelle tâche')->link();
+        $crawler = $client->click($link);
+
+        $form = $crawler->selectButton('Ajouter')->form();
+        $this->assertNotEmpty($form);
+    }
+
+    /**
+     * testClickCreateNewTask - Test si le lien vers la page de création d'une tâche fonctionne
+     */
+    public function testClicklistNewTaskNotOver()
+    {
+        $client = static::createClient();
+        $this->getUserConnect($client, 'user_1');
+
+        $crawler = $client->request('GET', '/');
+        $link = $crawler->selectLink('Consulter la liste des tâches à faire')->link();
+        $crawler = $client->click($link);
+
+        $info = $crawler->filter('h1')->text();
+        $info = $string = trim(preg_replace('/\s\s+/', ' ', $info));
+
+        $this->assertSame("Liste des tâches à réaliser", $info);
+    }
+
+    /**
+     * testClickCreateNewTask - Test si le lien vers la page de création d'une tâche fonctionne
+     */
+    public function testClicklistNewTaskOver()
+    {
+        $client = static::createClient();
+        $this->getUserConnect($client, 'user_1');
+
+        $crawler = $client->request('GET', '/');
+        $link = $crawler->selectLink('Consulter la liste des tâches terminées')->link();
+        $crawler = $client->click($link);
+
+        $info = $crawler->filter('h1')->text();
+        $info = $string = trim(preg_replace('/\s\s+/', ' ', $info));
+
+        $this->assertSame("Liste des tâches terminées", $info);
+    }
 }

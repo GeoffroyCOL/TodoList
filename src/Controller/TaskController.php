@@ -21,16 +21,26 @@ class TaskController extends AbstractController
     }
 
     /**
-     * listAction - Affiche la liste des tâches
+     * listAction - Affiche la liste des tâches selon son status ( A faire ou terminée )
      * 
      * @Route("/tasks", name="task_list")
      * 
+     * @param Request $request
      * @return Response
      */
-    public function listAction(): Response
+    public function listAction(Request $request): Response
     {
+        $status = false;
+        $status_tache = " à réaliser";
+
+        if ($request->query->get('status') == 'over') {
+            $status = true;
+            $status_tache = " terminées";
+        }
+
         return $this->render('task/list.html.twig', [
-            'tasks' => $this->taskHandler->getAll()
+            'tasks' => $this->taskHandler->getAll(['isDone' => $status]),
+            'status_tache' => $status_tache
         ]);
     }
 
