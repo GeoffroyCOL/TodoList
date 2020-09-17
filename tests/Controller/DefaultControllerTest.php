@@ -41,7 +41,7 @@ class DefaultControllerTest extends ControllerTest
     }
 
     /**
-     * testClickCreateNewTask - Test si le lien vers la page de création d'une tâche fonctionne
+     * testClickCreateNewTask - Test si le lien vers la page de liste des tâche a réalisées
      */
     public function testClicklistNewTaskNotOver()
     {
@@ -59,7 +59,7 @@ class DefaultControllerTest extends ControllerTest
     }
 
     /**
-     * testClickCreateNewTask - Test si le lien vers la page de création d'une tâche fonctionne
+     * testClickCreateNewTask - Test si le lien vers la page de création d'une tâche terminées
      */
     public function testClicklistNewTaskOver()
     {
@@ -74,5 +74,20 @@ class DefaultControllerTest extends ControllerTest
         $info = $string = trim(preg_replace('/\s\s+/', ' ', $info));
 
         $this->assertSame("Liste des tâches terminées", $info);
+    }
+
+    public function testClickCreateUserRoleAdmin()
+    {
+        $client = static::createClient();
+        $this->getUserConnect($client, 'user_1');
+
+        $crawler = $client->request('GET', '/');
+        $link = $crawler->selectLink('Créer un utilisateur')->link();
+        $crawler = $client->click($link);
+
+        $info = $crawler->filter('h1')->text();
+        $info = $string = trim(preg_replace('/\s\s+/', ' ', $info));
+
+        $this->assertSame("Créer un utilisateur", $info);
     }
 }
