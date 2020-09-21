@@ -54,7 +54,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userHandler->add($form->getDAta());
-            $this->addFlash('success', "L'utilisateur a bien été ajouté.");
+            $this->addFlash('success', "L'utilisateur a bien été ajouté");
             return $this->redirectToRoute('user_list');
         }
 

@@ -53,7 +53,7 @@ class DefaultControllerTest extends ControllerTest
         $crawler = $client->click($link);
 
         $info = $crawler->filter('h1')->text();
-        $info = $string = trim(preg_replace('/\s\s+/', ' ', $info));
+        $info = trim(preg_replace('/\s\s+/', ' ', $info));
 
         $this->assertSame("Liste des tâches à réaliser", $info);
     }
@@ -71,7 +71,7 @@ class DefaultControllerTest extends ControllerTest
         $crawler = $client->click($link);
 
         $info = $crawler->filter('h1')->text();
-        $info = $string = trim(preg_replace('/\s\s+/', ' ', $info));
+        $info = trim(preg_replace('/\s\s+/', ' ', $info));
 
         $this->assertSame("Liste des tâches terminées", $info);
     }
@@ -86,7 +86,7 @@ class DefaultControllerTest extends ControllerTest
         $crawler = $client->click($link);
 
         $info = $crawler->filter('h1')->text();
-        $info = $string = trim(preg_replace('/\s\s+/', ' ', $info));
+        $info = trim(preg_replace('/\s\s+/', ' ', $info));
 
         $this->assertSame("Créer un utilisateur", $info);
     }
