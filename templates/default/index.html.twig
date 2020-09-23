@@ -2,7 +2,7 @@
 
 {% block header_title %}
     <h1 class="h1">Bienvenue sur Todo List</h1>
-    <p class="mb-3 mb-md-5">L'application vous permettant de gérer l'ensemble de vos tâches sans effort !</p>
+    <p class="mb-3 mb-md-5 h4">L'application vous permettant de gérer l'ensemble de vos tâches sans effort !</p>
 {% endblock %}
 
 {% block body %}
@@ -11,5 +11,8 @@
         <a href="{{ path('task_create') }}" class="btn button btn-success mb-2 mb-lg-0">Créer une nouvelle tâche</a>
         <a href="{{ path('task_list') }}" class="btn button btn-info mb-2 mb-lg-0">Consulter la liste des tâches à faire</a>
         <a href="{{ path('task_list', {status: 'over'}) }}" class="btn button btn-secondary">Consulter la liste des tâches terminées</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('user_list') }}" class="btn button btn-primary">Voir les utilisateurs</a>
+        {% endif %}
     </div>
 {% endblock %}

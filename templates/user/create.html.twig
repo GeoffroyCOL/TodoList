@@ -1,14 +1,37 @@
 {% extends 'base.html.twig' %}
-
-{% block header_title %}<h1>Créer un utilisateur</h1>{% endblock %}
-{% block header_img %}{% endblock %}
+{% block header_title %}<h1 class="h1 mb-3 mb-md-5">Créer un utilisateur</h1>{% endblock %}
 
 {% block body %}
-    <div class="row">
-        {{ form_start(form, {'action' : path('user_create')}) }}
-            {{ form_widget(form) }}
+    {{ form_start(form, {'action' : path('user_create')}) }}
+        <div class="row">
+            <div class="form-group col-12 col-md-6">
+                {{ form_label(form.username, '', {'label_attr': { 'class': 'font-weight-bold mb-1'}}) }}
+                {{ form_widget(form.username) }}
+            </div>
 
-            <button type="submit" class="btn btn-success pull-right">Ajouter</button>
-        {{ form_end(form) }}
-    </div>
+            <div class="form-group col-12 col-md-6">
+                {{ form_label(form.email, '', {'label_attr': { 'class': 'font-weight-bold mb-1'}}) }}
+                {{ form_widget(form.email) }}
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+                {{ form_label(form.password.first, '', {'label_attr': { 'class': 'font-weight-bold mb-1'}}) }}
+                {{ form_widget(form.password.first) }}
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+                {{ form_label(form.password.second, '', {'label_attr': { 'class': 'font-weight-bold mb-1'}}) }}
+                {{ form_widget(form.password.second) }}
+            </div>
+
+            <div class="form-group col-12">
+                {{ form_label(form.roles, 'Rôle', {'label_attr': { 'class': 'font-weight-bold mb-1'}}) }}
+                {{ form_widget(form.roles) }}
+            </div>
+
+            <div class="text-right mt-4 mt-md-3 col-12">
+                <button type="submit" class="btn btn-success">Ajouter</button>
+            </div>
+        </div>
+    {{ form_end(form) }}
 {% endblock %}

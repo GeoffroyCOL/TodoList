@@ -1,13 +1,23 @@
 {% extends 'base.html.twig' %}
+{% block header_title %}<h1 class="h1 mb-3 mb-md-5">Ajouter une nouvelle tâche</h1>{% endblock %}
 
 {% block body %}
-    <div class="row">
-        {{ form_start(form, {'action' : path('task_create')}) }}
-            {{ form_widget(form) }}
+    {{ form_start(form, {'action' : path('task_create')}) }}
+        <div class="row">
+            <div class="form-group col-12">
+                {{ form_label(form.title, 'Titre de la tâche', {'label_attr': { 'class': 'font-weight-bold mb-1'}}) }}
+                {{ form_widget(form.title) }}
+            </div>
 
-            <button type="submit" class="btn btn-success pull-right">Ajouter</button>
-        {{ form_end(form) }}
+            <div class="form-group col-12">
+                {{ form_label(form.content, 'Descriptif de la tâche', {'label_attr': { 'class': 'font-weight-bold mb-1'}}) }}
+                {{ form_widget(form.content) }}
+            </div>
 
-        <a href="{{ path('task_list') }}" class="btn btn-primary">Retour à la liste des tâches</a>
-    </div>
+            <div class="text-right mt-4 mt-md-3 col-12">
+                <button type="submit" class="btn btn-success pull-right">Ajouter</button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+    <p class="mb-0 mt-3"><a href="{{ path('task_list') }}" class="btn button btn-primary">Retour à la liste des tâches</a></p>
 {% endblock %}
