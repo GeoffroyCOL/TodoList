@@ -20,6 +20,12 @@
     "behat/transliterator": {
         "version": "v1.3.0"
     },
+    "blackfire/php-sdk": {
+        "version": "v1.23.0"
+    },
+    "composer/ca-bundle": {
+        "version": "1.2.8"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {

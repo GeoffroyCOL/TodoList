@@ -26,6 +26,7 @@
         "behat/mink": "^1.8",
         "behat/mink-extension": "^2.3",
         "behat/mink-goutte-driver": "^1.2",
+        "blackfire/php-sdk": "^1.23",
         "composer/package-versions-deprecated": "^1.11",
         "doctrine/annotations": "^1.10",
         "doctrine/doctrine-migrations-bundle": "^3.0",
