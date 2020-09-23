@@ -5,15 +5,21 @@
         <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path('login') }}" method="post">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    <form action="{{ path('login') }}" method="post" class="row">
+        <div class="form-group col-12 col-md-6">
+            <label class="font-weight-bold" for="username">Nom d'utilisateur</label>
+            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" />
+        </div>
 
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="_password" />
+        <div class="form-group col-12 col-md-6">
+            <label class="font-weight-bold" for="password">Mot de passe</label>
+            <input class="form-control" type="password" id="password" name="_password" />
+        </div>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <button class="btn btn-success" type="submit">Se connecter</button>
+        <div class="text-right mt-4 mt-md-3 col-12">
+            <button class="btn btn-success" type="submit">Se connecter</button>
+        </div>
     </form>
 {% endblock %}
