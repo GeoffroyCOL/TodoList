@@ -32,15 +32,18 @@ class TaskController extends AbstractController
     {
         $status = false;
         $status_tache = " à réaliser";
+        $menu = 'task';
 
         if ($request->query->get('status') == 'over') {
             $status = true;
             $status_tache = " terminées";
+            $menu .= '_over';
         }
 
         return $this->render('task/list.html.twig', [
-            'tasks' => $this->taskHandler->getAll(['isDone' => $status]),
-            'status_tache' => $status_tache
+            'tasks'         => $this->taskHandler->getAll(['isDone' => $status]),
+            'status_tache'  => $status_tache,
+            'current_page'  => $menu
         ]);
     }
 

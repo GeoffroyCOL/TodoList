@@ -34,7 +34,8 @@ class UserController extends AbstractController
     public function listAction(): Response
     {
         return $this->render('user/list.html.twig', [
-            'users' => $this->userHandler->getAll()
+            'users'         => $this->userHandler->getAll(),
+            'current_page'  => 'user'
         ]);
     }
 
@@ -59,7 +60,8 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/create.html.twig', [
-            'form' => $form->createView()
+            'form'          => $form->createView(),
+            'current_page'  => 'user'
         ]);
     }
 
@@ -84,7 +86,9 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/edit.html.twig', [
-            'form' => $form->createView(), 'user' => $user
+            'form'          => $form->createView(),
+            'user'          => $user,
+            'current_page'  => 'user'
         ]);
     }
 }
