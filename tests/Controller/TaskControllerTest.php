@@ -82,10 +82,10 @@ class TaskControllerTest extends ControllerTest
             ['/tasks',              Response::HTTP_OK], // Vérifie si la page retourne un status 200
             ['/tasks/11/edit',      Response::HTTP_OK], // Vérifie si la page de la tâche dont l'id est 11 retourne un status 200
             ['/tasks/100/edit',     Response::HTTP_NOT_FOUND], // Vérifie si la page de la tâche dont l'id est 100 retourne un status 404
-            ['/tasks/3/edit',       Response::HTTP_FORBIDDEN], // Vérifie le droit d'accès d'un utilisateur selon la tâche pour la modifier 
+            ['/tasks/4/edit',       Response::HTTP_FORBIDDEN], // Vérifie le droit d'accès d'un utilisateur selon la tâche pour la modifier 
             ['/tasks/100/delete',   Response::HTTP_NOT_FOUND], // Vérifie que la tâche dont l'id est 100 retourne un status 404 pour cette route
-            ['/tasks/3/delete',     Response::HTTP_FORBIDDEN], // Vérifie si l'utilisateur peut supprimer une tâche
-            ['/tasks/3/toggle',     Response::HTTP_FOUND] // Vérifie qu'un utilisateur peut choisir de modifier la status d'une tâche
+            ['/tasks/4/delete',     Response::HTTP_FORBIDDEN], // Vérifie si l'utilisateur peut supprimer une tâche
+            ['/tasks/4/toggle',     Response::HTTP_FOUND] // Vérifie qu'un utilisateur peut choisir de modifier la status d'une tâche
         ];
     }
 }

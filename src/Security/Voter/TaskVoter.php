@@ -22,10 +22,12 @@ class TaskVoter extends Voter
             return false;
         }
 
+        //Si l'utilisateur est l'auteur de la tâche
         if ($subject->getUser() == $user && in_array($attribute, ['TASK_EDIT', 'TASK_DELETE'])) {
             return true;
         }
 
+        //Si la tâche a un auteur anonyme et que l'utilisateur a un rôle ADMIN
         if ($subject->getUser()->getUsername() == 'Anonyme' && in_array('ROLE_ADMIN', $user->getRoles())) {
             return true;
         }

@@ -17,7 +17,7 @@ Feature: Task
 
   Scenario: Edit my task
     Given I Login as "user_1" with password "1"
-    When I am on "/tasks/12/edit"
+    When I am on "/tasks/14/edit"
     When I fill the form for task "Nouveau titre modifiée de 12 dfdf" and "Un nouveau contenu modfiée de 12"
     And I press "Modifier"
     Then I should see "La tâche a bien été modifiée."
@@ -37,11 +37,11 @@ Feature: Task
 
   Scenario: Delete my task
     Given I Login as "user_1" with password "1"
-    When I am on "/tasks/12/delete"
+    When I am on "/tasks/43/delete"
     Then I should see "La tâche a bien été supprimée"
 
 
   Scenario: Delete a task create by anonyme with a admin role
     Given I Login as "user_1" with password "1"
-    When I am on "/tasks/3/delete"
+    When I am on "/tasks/44/delete"
     Then I should see "La tâche a bien été supprimée"

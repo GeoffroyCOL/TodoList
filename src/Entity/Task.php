@@ -169,6 +169,7 @@ class Task
      */
     public function getUser(): ?User
     {
+        //Si la tâche n'a pas d'author alors on lui associe un utilisateur Anonyme
         if (!$this->user) {
             return (new User)->setUsername('Anonyme');
         }

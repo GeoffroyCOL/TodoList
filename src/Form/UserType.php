@@ -56,8 +56,13 @@ class UserType extends AbstractType
             'data_class' => User::class
         ]);
     }
-
-    private function getChoices()
+    
+    /**
+     * getChoices - Permet de retourner les différents roles pour le choix dans le formulaire
+     *
+     * @return void
+     */
+    private function getChoices(): array
     {
         $choices = User::ROLES;
         $output = [];
