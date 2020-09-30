@@ -9,12 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
-{  
+{
     /**
      * loginAction
      *
      * @Route("/login", name="login")
-     * 
+     *
      * @param  AuthenticationUtils $authenticationUtils
      * @return Response
      */

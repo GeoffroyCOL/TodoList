@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
 class TaskController extends AbstractController
 {
     private $taskHandler;
@@ -22,7 +21,7 @@ class TaskController extends AbstractController
 
     /**
      * listAction - Affiche la liste des tâches selon son status ( A faire ou terminée )
-     * 
+     *
      * @Route("/tasks", name="task_list")
      *
      * @return Response
@@ -38,9 +37,9 @@ class TaskController extends AbstractController
 
     /**
      * listActionOver - Affiche la liste des tâches finies
-     * 
+     *
      * @Route("/tasks/over", name="task_list_over")
-     * 
+     *
      * @return Response
      */
     public function listActionOver(): Response
@@ -54,9 +53,9 @@ class TaskController extends AbstractController
 
     /**
      * createAction - Créer une nouvelle tâche
-     * 
+     *
      * @Route("/tasks/create", name="task_create")
-     * 
+     *
      * @param  Request $request
      * @return Response
      */
@@ -79,13 +78,13 @@ class TaskController extends AbstractController
 
     /**
      * editAction - Modifie une tâche
-     * 
+     *
      * @Route("/tasks/{id}/edit", name="task_edit")
-     * 
+     *
      * @param  Task $task
      * @param  Request $request
      * @return Response
-     */    
+     */
     public function editAction(Task $task, Request $request): Response
     {
         $this->denyAccessUnlessGranted('TASK_EDIT', $task, 'Vous ne pouvez pas modifier cette tâche');
@@ -107,9 +106,9 @@ class TaskController extends AbstractController
 
     /**
      * toggleTaskAction - Permet de modifier le status de la tâche : A faire ou réalisée
-     * 
+     *
      * @Route("/tasks/{id}/toggle", name="task_toggle")
-     * 
+     *
      * @param  Task $task
      * @return Response
      */
@@ -125,9 +124,9 @@ class TaskController extends AbstractController
 
     /**
      * deleteTaskAction - Permet de supprimer une tâche
-     * 
+     *
      * @Route("/tasks/{id}/delete", name="task_delete")
-     * 
+     *
      * @param  Task $task
      * @return Response
      */

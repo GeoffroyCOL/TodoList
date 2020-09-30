@@ -25,7 +25,7 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
 
             $task->setTitle('Tâche n° '. $i)
                 ->setContent('Le contenue de la tâche numéro '. $i)
-                ->setUser($this->getReference('user_'.$u))   
+                ->setUser($this->getReference('user_'.$u))
             ;
 
             $u++;

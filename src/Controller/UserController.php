@@ -26,9 +26,9 @@ class UserController extends AbstractController
 
     /**
      * listAction - Affiche la liste des utilisateurs
-     * 
+     *
      * @Route("/users", name="user_list")
-     * 
+     *
      * @return Response
      */
     public function listAction(): Response
@@ -41,9 +41,9 @@ class UserController extends AbstractController
 
     /**
      * createAction - Créer un nouvel utilisateur
-     * 
+     *
      * @Route("/users/create", name="user_create")
-     * 
+     *
      * @param  Request $request
      * @return Response
      */
@@ -67,9 +67,9 @@ class UserController extends AbstractController
 
     /**
      * editAction - Modifie un utilisateur
-     * 
+     *
      * @Route("/users/{id}/edit", name="user_edit")
-     * 
+     *
      * @param  User $user
      * @param  Request $request
      * @return Response

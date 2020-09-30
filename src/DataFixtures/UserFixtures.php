@@ -16,7 +16,7 @@ class UserFixtures extends Fixture
 
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
-        $this->encoder = $encoder; 
+        $this->encoder = $encoder;
     }
 
     public function load(ObjectManager $manager)
@@ -32,6 +32,5 @@ class UserFixtures extends Fixture
         }
 
         $manager->flush();
-
     }
 }
