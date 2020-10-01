@@ -23,10 +23,14 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
                 $u = 1;
             }
 
-            $task->setTitle('Tâche n° '. $i)
+            if ($i !== 10) {
+                $task->setTitle('Tâche n° '. $i)
                 ->setContent('Le contenue de la tâche numéro '. $i)
-                ->setUser($this->getReference('user_'.$u))
-            ;
+                ->setUser($this->getReference('user_'.$u));
+            } else {
+                $task->setTitle('Tâche n° '. $i)
+                ->setContent('Le contenue de la tâche numéro '. $i);
+            }
 
             $u++;
             
