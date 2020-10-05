@@ -62,6 +62,7 @@
     },
     "require-dev": {
         "behat/behat": "^3.7",
+        "dama/doctrine-test-bundle": "^6.3",
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "symfony/browser-kit": "4.4.*",
         "symfony/css-selector": "4.4.*",

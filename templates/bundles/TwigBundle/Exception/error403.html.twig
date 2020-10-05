@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{status_code}}{% endblock %}
+
+{% block body %}
+<div>
+    <h1 class="display-4">Accès refusé</h1>
+    <p>{{exception.message}}</p>
+</div>
+{% endblock %}

@@ -7,7 +7,7 @@ Feature: User
 		Scenario: Add a user
 			Given I Login as "user_1" with password "1"
 			When I am on "users/create"
-			When I fill form for user with  username "new_user", password "Hum123", a confirme password "Hum123", email "userNew@gmail.com" and roles "ROLE_USER"
+			When I fill form for user with  username "new_user 100", password "Hum123", a confirme password "Hum123", email "email201@gmail.com" and roles "ROLE_USER"
 			And I press "Ajouter"
 			Then I should see "L'utilisateur a bien été ajouté"
 
