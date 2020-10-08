@@ -144,7 +144,21 @@ Si vous souhaitez ajouter un attribut qui soit utilisé pour l'ajout et la modif
 
 Il faut penser également à modifier les templates qui affiche les différents champs du formulaire formulaires.
 
+-----------------------------------------------------------
 
+## 7/ Etapes
+
+La procédure de contribution : 
+
+```bash
+* Créer une issue
+* Création de la branche pour la réalisation
+* Codage
+* Teste
+* Créer une pull request
+* Revue de code
+* Merger la branche
+```
 
 
 
