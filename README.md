@@ -1,5 +1,7 @@
 # ToDoList
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/68d142a7123d4b93ab9daeaeccaa4cc0)](https://www.codacy.com/manual/GeoffroyCOL/Todolist/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GeoffroyCOL/Todolist&amp;utm_campaign=Badge_Grade)
+
 ToDoList est une application qui permet de gérer différentes tâches.
 
 
