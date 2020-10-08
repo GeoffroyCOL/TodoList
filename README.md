@@ -23,9 +23,9 @@ Symfony serve -d
 ## Frabriquer avec
 
 ```bash
-* Symfony 4.4
-* PHP 7.3
-* Bootstrap 4
+Symfony 4.4
+PHP 7.3
+Bootstrap 4
 ```
 
 ## Contribution
