@@ -32,7 +32,7 @@ Bootstrap 4
 
 ## Contribution
 
-Si vous souhaitez contribuer, lisez le fichier contribution.md
+Si vous souhaitez contribuer, lisez le fichier [contribution.md](https://github.com/GeoffroyCOL/Todolist/blob/master/contribution.md)
 
 
 ## Librairies
