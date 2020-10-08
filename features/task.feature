@@ -8,7 +8,7 @@ Feature: Task
 
 
   Scenario: Add a task
-    Given I Login as "user_1" with password "1"
+    Given I Login as "user_1" with password "Hum123"
     When I am on "/tasks/create"
     When I fill the form for task "Nouveau tâche ajoutée" and "Le contenue à réaliser"
     And I press "Ajouter"
@@ -16,7 +16,7 @@ Feature: Task
 
 
   Scenario: Edit my task
-    Given I Login as "user_1" with password "1"
+    Given I Login as "user_1" with password "Hum123"
     When I am on "/tasks/14/edit"
     When I fill the form for task "Modifié le titre" and "Modifier le contenu"
     And I press "Modifier"
@@ -24,7 +24,7 @@ Feature: Task
 
 
   Scenario: Edit a task don't create
-    Given I Login as "user_1" with password "1"
+    Given I Login as "user_1" with password "Hum123"
     When I am on "/tasks/10/edit"
     Then I should see "Vous ne pouvez pas modifier cette tâche"
 
@@ -36,12 +36,12 @@ Feature: Task
 
 
   #Scenario: Delete my task
-  # Given I Login as "user_1" with password "1"
-  #  When I am on "/tasks/43/delete"
-  #  Then I should see "La tâche a bien été supprimée"
+    #Given I Login as "user_1" with password "Hum123"
+    #When I am on "/tasks/20/delete"
+    #Then I should see "La tâche a bien été supprimée"
 
 
   #Scenario: Delete a task create by anonyme with a admin role
-  #  Given I Login as "user_1" with password "1"
-  #  When I am on "/tasks/44/delete"
-  #  Then I should see "La tâche a bien été supprimée"
+    #Given I Login as "user_1" with password "Hum123"
+    #When I am on "/tasks/8/delete"
+    #Then I should see "La tâche a bien été supprimée"

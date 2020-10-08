@@ -14,7 +14,7 @@
                     {% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
                 </button>
             </form>
-            <a class="btn btn-danger btn-sm text-white ml-2" src="{{ path('task_delete', {'id' : task.id }) }}">Supprimer</a>
+            <a class="btn btn-danger btn-sm text-white ml-2" href="{{ path('task_delete', {'id' : task.id }) }}">Supprimer</a>
         </div>            
     </div>
 </div>

@@ -15,7 +15,6 @@ class SecurityControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/login');
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-
     }
 
     /**
@@ -65,7 +64,7 @@ class SecurityControllerTest extends WebTestCase
             [
                 [
                     '_username' => 'user_1',
-                    '_password' => 1
+                    '_password' => 'Hum123'
                 ]
             ]
         ];
@@ -82,7 +81,7 @@ class SecurityControllerTest extends WebTestCase
             [
                 [
                     '_username' => 'user_1',
-                    '_password' => 10
+                    '_password' => 'bnvemrjhg'
                 ]
             ]
         ];

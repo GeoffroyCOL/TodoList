@@ -20,7 +20,7 @@ class DefaultControllerTest extends ControllerTest
         $client = static::createClient();
         $this->getUserConnect($client, 'user_1');
 
-        $client->request('GET', '/tasks');
+        $client->request('GET', '/');
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
     
@@ -41,7 +41,7 @@ class DefaultControllerTest extends ControllerTest
     }
 
     /**
-     * testClickCreateNewTask - Test si le lien vers la page de liste des tâche a réalisées
+     * testClicklistNewTaskNotOver - Test si le lien vers la page de liste des tâche a réalisées
      */
     public function testClicklistNewTaskNotOver()
     {
@@ -59,7 +59,7 @@ class DefaultControllerTest extends ControllerTest
     }
 
     /**
-     * testClickCreateNewTask - Test si le lien vers la page de création d'une tâche terminées
+     * testClicklistNewTaskOver - Test si le lien vers la page de création d'une tâche terminées
      */
     public function testClicklistNewTaskOver()
     {
