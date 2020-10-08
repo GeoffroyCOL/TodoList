@@ -150,15 +150,13 @@ Il faut penser également à modifier les templates qui affiche les différents 
 
 La procédure de contribution : 
 
-```bash
-* Créer une issue
-* Création de la branche pour la réalisation
+* Création de l'issue
+* Création de la branche pour la réalisation de cette issue
 * Codage
 * Teste
-* Créer une pull request
+* Création d'une pull request
 * Revue de code
 * Merger la branche
-```
 
 
 
