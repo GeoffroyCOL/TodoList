@@ -2,7 +2,7 @@
 
 ToDoList est une application qui permet de gérer différentes tâches à réaliser.
 
----------------------------------------------------
+
 
 ## Installation du projet
 
@@ -22,8 +22,6 @@ Pour démarrer l'application en local
 Symfony serve -d
 ```
 
-----------------------------------------------------
-
 ## Frabriquer avec
 
 ```bash
@@ -32,14 +30,10 @@ PHP 7.3
 Bootstrap 4 - Framework CSS
 ```
 
-----------------------------------------------------
-
 ## Contribution
 
-Si vous souhaitez contribuer, lisez le fichier contribution.md.
+Si vous souhaitez contribuer, lisez le fichier contribution.md
 
-
-------------------------------------------------------
 
 ## Librairies
 
@@ -48,7 +42,85 @@ Si vous souhaitez contribuer, lisez le fichier contribution.md.
 composer require symfony/flex
 ```
 
-2. 
+2. annotation
+```bash
+composer require symfony/asset
+```
+
+3. [asset](https://symfony.com/doc/current/components/asset.html)
+```bash
+composer require doctrine/annotations
+```
+
+4. orm-pack
+```bash
+composer require doctrine/annotations
+```
+
+5. twig
+```bash
+composer require doctrine/annotations
+```
+
+6. validator
+```bash
+composer require doctrine/annotations
+```
+
+7. logger
+```bash
+composer require doctrine/annotations
+```
+
+8. mailler
+```bash
+composer require doctrine/annotations
+```
+
+9. PHPUnit
+```bash
+composer require doctrine/annotations
+```
+
+10. form
+```bash
+composer require doctrine/annotations
+```
+
+11. security
+```bash
+composer require doctrine/annotations
+```
+
+12. translation
+```bash
+composer require doctrine/annotations
+```
+
+13. Behat
+```bash
+composer require doctrine/annotations
+```
+
+14. maker-bundle
+```bash
+composer require doctrine/annotations
+```
+
+15. orm-fixtures
+```bash
+composer require doctrine/annotations
+```
+
+16. profiler
+```bash
+composer require doctrine/annotations
+```
+
+17. dotenv
+```bash
+composer require doctrine/annotations
+```
 
 -----------------------------------------------------
 
